@@ -1,15 +1,11 @@
 import React from "react";
-import PodcastPreviewCard from "./PodcastPreviewCard";
+import PodcastPreviewCard from "./PodcastPreviewCard.jsx";
 
-/**
- * PodcastGrid displays a responsive grid of PodcastPreviewCard components.
- * @param {Array} podcasts - Array of podcast objects
- */
-const PodcastGrid = ({ podcasts }) => {
+const PodcastGrid = ({ podcasts, genres }) => {
   return (
-    <section id="podcasts" className="podcast-grid">
-      {podcasts.map((podcast) => (
-        <PodcastPreviewCard key={podcast.id} {...podcast} />
+    <section className="podcast-grid" id="podcasts">
+      {podcasts.map(podcast => (
+        <PodcastPreviewCard key={podcast.id} podcast={podcast} genres={genres} />
       ))}
     </section>
   );

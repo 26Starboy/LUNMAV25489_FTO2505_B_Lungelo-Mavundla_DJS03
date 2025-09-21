@@ -1,59 +1,44 @@
-import React, { useEffect, useState } from "react";
-import PodcastGrid from "./PodcastGrid";
-import Loading from "./Loading";
-import Error from "./Error";
-import { genres } from "../data";
-import { formatDistanceToNow } from "date-fns";
+// src/components/PodcastPreviewCard.jsx
+import React from "react";
 
-/**
- * PodcastPreview component fetches podcast data and renders the grid.
- */
-const PodcastPreview = () => {
-  const [podcasts, setPodcasts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const PodcastPreviewCard = ({ podcast, genreMap }) => {
+  return (
+    <div className="podcast-card">
+      {/* Podcast image */}
+      <img
+        src={podcast.image}
+        alt={podcast.title}
+        className="podcast-image"
+      />
 
-  useEffect(() => {
-    fetch("https://podcast-api.netlify.app/podcasts")
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data || data.length === 0) {
-          setError("No podcasts found.");
-          setLoading(false);
-          return;
-        }
+      <div className="podcast-info">
+        {/* Title */}
+        <h3 className="podcast-title">{podcast.title}</h3>
 
-        // Map genre IDs to names
-        const podcastsWithGenres = data.map((podcast) => {
-          const podcastGenres = genres
-            .filter((g) => podcast.genre_ids?.includes(parseInt(g.id)))
-            .map((g) => g.title);
+        {/* Genres */}
+        <div className="podcast-genres">
+          {podcast.genres.map((id) => (
+            <span key={id} className="genre-tag">
+              {genreMap[id]}
+            </span>
+          ))}
+        </div>
 
-          return {
-            id: podcast.id,
-            title: podcast.title,
-            image: podcast.image,
-            seasons: podcast.totalSeasons || 0,
-            genres: podcastGenres,
-            lastUpdated: formatDistanceToNow(new Date(podcast.lastUpdated), {
-              addSuffix: true,
-            }),
-          };
-        });
+        {/* Description */}
+        <p className="podcast-description">{podcast.description}</p>
 
-        setPodcasts(podcastsWithGenres);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("Failed to fetch podcasts.");
-        setLoading(false);
-      });
-  }, []);
+        {/* Seasons info */}
+        <p className="podcast-seasons">
+          Seasons: {podcast.seasons}
+        </p>
 
-  if (loading) return <Loading />;
-  if (error) return <Error message={error} />;
-
-  return <PodcastGrid podcasts={podcasts} />;
+        {/* Last updated */}
+        <p className="podcast-updated">
+          Last updated: {new Date(podcast.updated).toLocaleDateString()}
+        </p>
+      </div>
+    </div>
+  );
 };
 
-export default PodcastPreview;
+export default PodcastPreviewCard;

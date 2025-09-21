@@ -1,14 +1,9 @@
 import React from "react";
 
-/**
- * Footer component for the landing page.
- */
-const Footer = () => {
-  return (
-    <footer className="footer">
-      <p>© {new Date().getFullYear()} Podcast Discovery. All rights reserved.</p>
-    </footer>
-  );
-};
+const Footer = () => (
+  <footer className="footer">
+    &copy; {new Date().getFullYear()} Podcast App. All rights reserved.
+  </footer>
+);
 
 export default Footer;

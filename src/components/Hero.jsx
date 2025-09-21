@@ -1,15 +1,13 @@
 import React from "react";
 
-/**
- * Hero section component for landing page introduction.
- */
-const Hero = () => {
-  return (
-    <section className="hero">
-      <h2>Discover Your Next Favorite Podcast</h2>
-      <p>Browse trending shows, explore genres, and stay updated with the latest content.</p>
-    </section>
-  );
-};
+const Hero = () => (
+  <section className="hero">
+    <h2>Discover Amazing Podcasts</h2>
+    <p>
+      Explore the best podcasts across genres like Personal Growth, History, 
+      Comedy, Business, and more. Listen, learn, and be entertained.
+    </p>
+  </section>
+);
 
 export default Hero;

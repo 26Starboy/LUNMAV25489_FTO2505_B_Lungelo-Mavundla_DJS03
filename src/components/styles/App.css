@@ -236,3 +236,38 @@ ul {
   font-size: 0.9rem;
   color: #555;
 }
+
+/* Optional global improvement */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Modal (if used) */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 100;
+}
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+}

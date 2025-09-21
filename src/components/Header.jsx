@@ -1,20 +1,15 @@
+// Example: src/components/Header.jsx
 import React from "react";
 
-/**
- * Header component for the landing page.
- */
-const Header = () => {
-  return (
-    <header className="header">
-      <h1 className="logo">Podcast Discovery</h1>
-      <nav>
-        <ul className="nav-links">
-          <li><a href="#podcasts">Podcasts</a></li>
-          <li><a href="#genres">Genres</a></li>
-        </ul>
-      </nav>
-    </header>
-  );
-};
+const Header = () => (
+  <header className="header">
+    <div className="logo">Podcast App</div>
+    <ul className="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Genres</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </header>
+);
 
 export default Header;
